@@ -1,17 +1,42 @@
 package org.efmb;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import models.Coorditation;
+import models.Faculty;
+import models.Professor;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Crear una coordinación
+        Coorditation coordinacion1 = new Coorditation(101, "Ingenieria en Sistemas");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        // Crear un profesor y asignarle una coordinación
+        Professor profesor1 = new Professor();
+        profesor1.setNombre("Eduardo");
+        profesor1.setApellidos("Mendoza");
+        profesor1.setId("EM123");
+        profesor1.setTitulo("ING.");
+        profesor1.setCoordinacion(coordinacion1);
+
+        // Crear una facultad y agregar la coordinación
+        Faculty facultad1 = new Faculty();
+        facultad1.setEdificio("Edificio 0");
+        facultad1.setId(1);
+        facultad1.setNombre("Facultad de Ingenieria");
+        facultad1.agregarCoordinacion(101, "Ingenieria en sistemas");
+
+        // Mostrar información
+        System.out.println("Información del Profesor:");
+        System.out.println("Nombre: " + profesor1.getNombre() + " " + profesor1.getApellidos());
+        System.out.println("ID: " + profesor1.getId());
+        System.out.println("Título: " + profesor1.getTitulo());
+        System.out.println("Coordinación: " + profesor1.getCoordinacion().getNombre());
+
+        System.out.println("\nInformación de la Facultad:");
+        System.out.println("Nombre: " + facultad1.getNombre());
+        System.out.println("Edificio: " + facultad1.getEdificio());
+        System.out.println("Listado de Coordinaciones:");
+        for (Coorditation coord : facultad1.mostrarListoCoordinacion()) {
+            System.out.println("Coordination ID: " + coord.getCodigo() + " Nombre: " + coord.getNombre());
         }
     }
 }
